@@ -1,6 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 const String apiKey = 'c7558ccb1e92b084efd7b8647dc31771';
+
 Future<List<Map<String, dynamic>>> fetchGenres() async {
   final response = await http.get(Uri.parse(
       'https://api.themoviedb.org/3/genre/movie/list?api_key=$apiKey&language=en'));
@@ -16,6 +18,7 @@ Future<List<Map<String, dynamic>>> fetchGenres() async {
     throw Exception('Failed to load genres');
   }
 }
+
 Future<List<dynamic>> fetchMoviesByGenre(int genreId) async {
   final response = await http.get(Uri.parse(
       'https://api.themoviedb.org/3/discover/movie?api_key=$apiKey&language=en-US&with_genres=$genreId&sort_by=popularity.desc'));
